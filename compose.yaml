@@ -1,0 +1,57 @@
+services:
+  ###> symfony/php ###
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www
+      - ./var/log:/var/www/var/log
+      - ./var/cache:/var/www/var/cache
+    environment:
+      SYMFONY_ENV: dev
+    depends_on:
+      - database
+      - mongodb
+    networks:
+      - danse
+  ###< symfony/php ###
+
+  ###> doctrine/doctrine-bundle ###
+  database:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-zooarcadia}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword}
+      MYSQL_USER: ${MYSQL_USER:-zoo_user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-password}
+    ports:
+      - "3307:3306"
+    volumes:
+      - database_data:/var/lib/mysql:rw
+    networks:
+      - danse
+  ###< doctrine/doctrine-bundle ###
+
+  ###> doctrine/mongodb-odm-bundle ###
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb_local
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: symfony
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./scripts/nosql.js:/docker-entrypoint-initdb.d/nosql.js
+    networks:
+      - danse
+  ###< doctrine/mongodb-odm-bundle ###
+
+volumes:
+  ###> doctrine/doctrine-bundle ###
+  database_data:
+  ###< doctrine/doctrine-bundle ###
