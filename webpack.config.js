@@ -1,73 +1,64 @@
 const Encore = require('@symfony/webpack-encore');
 
-// Manually configure the runtime environment if not already configured yet by the "encore" command.
-// It's useful when you use tools that rely on webpack.config.js file.
+// Configure l'environnement d'exécution (développement ou production)
 if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
 
 Encore
-    // directory where compiled assets will be stored
+    // Répertoire où les assets compilés seront stockés
     .setOutputPath('public/build/')
-    // public path used by the web server to access the output path
-    .setPublicPath('/build')
-    // only needed for CDN's or subdirectory deploy
-    //.setManifestKeyPrefix('build/')
 
-    /*
-     * ENTRY CONFIG
-     *
-     * Each entry will result in one JavaScript file (e.g. app.js)
-     * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
-     */
+    // Chemin public utilisé par le serveur pour accéder aux assets compilés
+    .setPublicPath('/build')
+
+    // Point d'entrée principal pour votre application (JS et SCSS)
     .addEntry('app', './assets/app.js')
 
-    // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
+    // Divise les fichiers en morceaux plus petits pour optimiser le chargement
     .splitEntryChunks()
 
-    // will require an extra script tag for runtime.js
-    // but, you probably want this, unless you're building a single-page app
+    // Utilise un seul fichier runtime.js pour les dépendances partagées
     .enableSingleRuntimeChunk()
 
-    /*
-     * FEATURE CONFIG
-     *
-     * Enable & configure other features below. For a full
-     * list of features, see:
-     * https://symfony.com/doc/current/frontend.html#adding-more-features
-     */
+    // Nettoie le répertoire `public/build/` avant chaque build
     .cleanupOutputBeforeBuild()
+
+    // Affiche des notifications après chaque build (utile pour le développement)
     .enableBuildNotifications()
-    .enableSourceMaps(!Encore.isProduction())
-    // enables hashed filenames (e.g. app.abc123.css)
+
+    // Ajoute un hash aux noms de fichiers en production pour gérer le cache
     .enableVersioning(Encore.isProduction())
+    
+    // Désactive la génération de source maps en production
+    .enableSourceMaps(false)
 
-    // configure Babel
-    // .configureBabel((config) => {
-    //     config.plugins.push('@babel/a-babel-plugin');
-    // })
-
-    // enables and configure @babel/preset-env polyfills
+    // Configure Babel pour gérer les fonctionnalités modernes de JavaScript
     .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';
-        config.corejs = '3.38';
+        config.useBuiltIns = 'usage'; // Charge uniquement les polyfills nécessaires
+        config.corejs = '3.38'; // Utilise CoreJS version 3.38 pour les polyfills
     })
 
-    // enables Sass/SCSS support
-    //.enableSassLoader()
-
-    // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
-
-    // uncomment if you use React
-    //.enableReactPreset()
-
-    // uncomment to get integrity="..." attributes on your script & link tags
-    // requires WebpackEncoreBundle 1.4 or higher
-    //.enableIntegrityHashes(Encore.isProduction())
-
-    // uncomment if you're having problems with a jQuery plugin
+    // Active le support des fichiers SCSS
+    .enableSassLoader((options) => {
+        options.sassOptions = {
+            outputStyle: 'expanded',
+        };
+    }, {
+        resolveUrlLoader: true, // Active resolve-url-loader
+    })
+    .copyFiles({
+        from: './assets/images', // Copier toutes les images
+        to: 'images/[path][name].[ext]', // Les placer dans 'public/build/images'
+    });
+    
+    // Ajoute d'autres fonctionnalités si nécessaire (par exemple jQuery)
     //.autoProvidejQuery()
+
+    Encore.copyFiles({
+        from: './assets/images', // Source des images
+        to: 'images/[path][name].[ext]', // Destination des images dans 'public/build'
+    });    
 ;
 
 module.exports = Encore.getWebpackConfig();
