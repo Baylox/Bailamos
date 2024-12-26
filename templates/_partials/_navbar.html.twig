@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" data-aos="fade-down" data-aos-duration="1000">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <!-- Logo centré -->
-        <a class="navbar-brand mx-auto d-lg-none" href="{{ path('app_home') }}" data-aos="zoom-in" data-aos-duration="800">
-            BayAlamo
+        <!-- Logo -->
+        <a class="navbar-brand" href="{{ path('app_home') }}">
+            <img src="{{ asset('build/images/Logo.webp') }}" alt="BayAlamo Logo" style="height: 40px;">
         </a>
 
         <!-- Menu burger -->
@@ -11,29 +11,42 @@
         </button>
 
         <!-- Navbar Menu -->
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNav" data-aos="fade-up" data-aos-delay="200">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav text-center">
-                <li class="nav-item" data-aos="fade-up" data-aos-delay="300">
+                <li class="nav-item">
                     <a class="nav-link" href="#">Cours</a>
                 </li>
-                <li class="nav-item" data-aos="fade-up" data-aos-delay="400">
+                <li class="nav-item">
                     <a class="nav-link" href="#">Planning</a>
                 </li>
-                <li class="nav-item" data-aos="fade-up" data-aos-delay="500">
+                <li class="nav-item">
                     <a class="nav-link" href="#">Tarifs</a>
                 </li>
-                <li class="nav-item" data-aos="fade-up" data-aos-delay="600">
+                <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
+                </li>
+
+                <!-- Bouton Connexion intégré au menu burger -->
+                <li class="nav-item d-lg-none">
+                    <a class="nav-link btn btn-primary text-white px-4 mt-2" href="{{ path('app_login') }}">
+                        Connexion
+                    </a>
                 </li>
             </ul>
         </div>
 
-        <!-- Connexion bouton -->
-        <a class="btn btn-primary d-none d-lg-block ms-auto" href="{{ path('app_login') }}" data-aos="zoom-in" data-aos-delay="700">
-            Connexion
+        <!-- Bouton Connexion visible uniquement sur écrans larges -->
+        <a class="btn btn-primary d-none d-lg-block ms-auto" 
+        href="{{ path('app_login') }}" 
+        data-aos="fade-left" 
+        data-aos-duration="600" 
+        data-aos-delay="100">
+        Connexion
         </a>
     </div>
 </nav>
+
+
 
 
 
