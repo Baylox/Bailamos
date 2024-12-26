@@ -2,7 +2,14 @@
 @import 'base/variables';
 @import 'base/typography';
 
+// Import des fichiers de composants
 @import 'components/buttons';
 @import 'components/cards';
 
+@import 'layout/navbar';
+
+// Import de Bootstrap
 @import "../../node_modules/bootstrap/scss/bootstrap";
+
+@import "~animate.css";
+@import "~aos/dist/aos.css";

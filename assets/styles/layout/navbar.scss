@@ -1,0 +1,41 @@
+$navbar-height: 70px;
+$navbar-brand-color: #CF2E2E;
+$navbar-link-color: #2C3E50;
+$navbar-link-hover-color: #CF2E2E;
+
+.navbar {
+    height: $navbar-height;
+    transition: all 0.3s ease;
+
+    .navbar-brand {
+        font-weight: 700;
+        color: $navbar-brand-color;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+        
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    .nav-link {
+        color: $navbar-link-color;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        transition: color 0.3s ease;
+        
+        &:hover {
+            color: $navbar-link-hover-color;
+        }
+        
+        &.btn {
+            color: white;
+            border-radius: 25px;
+            
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+        }
+    }
+}

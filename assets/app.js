@@ -7,4 +7,8 @@
  */
 import './styles/app.scss';
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+// Initialisation d'AOS
+AOS.init();
