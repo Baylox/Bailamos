@@ -1,41 +1,61 @@
-$navbar-height: 70px;
-$navbar-brand-color: #CF2E2E;
-$navbar-link-color: #2C3E50;
-$navbar-link-hover-color: #CF2E2E;
-
 .navbar {
-    height: $navbar-height;
-    transition: all 0.3s ease;
+    background-color: $bay-light; // Utilisation des couleurs définies
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
     .navbar-brand {
-        font-weight: 700;
-        color: $navbar-brand-color;
-        font-size: 1.5rem;
-        transition: all 0.3s ease;
-        
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: $bay-red;
         &:hover {
-            transform: scale(1.05);
+            color: darken($bay-red, 10%);
+            transform: scale(1.1);
+            transition: all 0.3s ease-in-out;
         }
     }
 
     .nav-link {
-        color: $navbar-link-color;
+        color: $bay-dark;
         font-weight: 500;
+        font-size: 1.1rem;
         padding: 0.5rem 1rem;
-        transition: color 0.3s ease;
-        
+        position: relative;
+
         &:hover {
-            color: $navbar-link-hover-color;
+            color: $bay-gold;
         }
-        
-        &.btn {
-            color: white;
-            border-radius: 25px;
-            
-            &:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
+
+        &::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: $bay-gold;
+            transition: width 0.3s;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        &:hover::after {
+            width: 50%;
+        }
+    }
+
+    .btn-primary {
+        background-color: $bay-red;
+        border-color: $bay-red;
+        color: $bay-light;
+        padding: 0.5rem 1.5rem;
+        font-size: 1.1rem;
+        border-radius: 25px;
+        &:hover {
+            background-color: lighten($bay-red, 10%);
+            border-color: lighten($bay-red, 10%);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
     }
 }
+
+

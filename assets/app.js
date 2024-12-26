@@ -5,10 +5,14 @@
  * This file will be included onto the page via the importmap() Twig function,
  * which should already be in your base.html.twig.
  */
+
+import 'bootstrap';
 import './styles/app.scss';
+
+//import './js/burgerNav.js';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 // Initialisation d'AOS
-AOS.init();
+AOS.init({});
