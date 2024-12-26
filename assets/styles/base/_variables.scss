@@ -1,0 +1,16 @@
+// Custom variables - Thème BayAlamo
+$bay-red: #CF2E2E;         // Rouge principal - énergie/passion
+$bay-gold: #FFB800;        // Or/jaune - dynamisme/chaleur
+$bay-deep-blue: #1B2845;   // Bleu profond - professionnalisme
+$bay-light: #F5F5F5;       // Blanc cassé - légèreté/élégance
+$bay-dark: #2C3E50;        // Bleu nuit - sophistication
+
+// Override des variables Bootstrap
+$primary: $bay-red;
+$secondary: $bay-gold;
+$success: #e5ff00;
+$info: #17a2b8;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: $bay-light;
+$dark: $bay-dark;
