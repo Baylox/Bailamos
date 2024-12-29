@@ -122,4 +122,9 @@ class Course
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->title ?? 'N/A'; // Retourne le titre du cours pour EasyAdmin
+    }
 }

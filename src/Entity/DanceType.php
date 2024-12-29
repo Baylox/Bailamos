@@ -91,4 +91,9 @@ class DanceType
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->name ?? 'N/A'; // Retourne le nom de la danse
+    }
 }
