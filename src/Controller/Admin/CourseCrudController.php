@@ -20,7 +20,6 @@ class CourseCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id')->hideOnForm(),
             TextField::new('title', 'Titre du cours'),
             DateTimeField::new('dateTime', 'Date et heure'),
             NumberField::new('duration', 'Durée (minutes)'),
