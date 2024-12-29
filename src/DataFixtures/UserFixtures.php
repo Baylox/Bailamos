@@ -18,6 +18,16 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+        // Création de 10 utilisateurs avec le rôle ROLE_STUDENT sans Factory
+        for ($i = 1; $i <= 10; $i++) {
+            $user = new User();
+            $user->setEmail("student{$i}@bayalamo.com");
+            $user->setRoles(['ROLE_STUDENT']);
+            $hashedPassword = $this->passwordHasher->hashPassword($user, 'password');
+            $user->setPassword($hashedPassword);
+
+            $manager->persist($user);
+        }
         // Création d'un utilisateur
         $user = new User();
         $user->setEmail('Clarissia@BayAlamo.com');
