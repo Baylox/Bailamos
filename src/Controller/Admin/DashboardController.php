@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+
 use App\Entity\Course;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -12,6 +13,9 @@ use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use App\Controller\Admin\UserCrudController;
 use App\Entity\DanceType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -35,6 +39,12 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Les types de danse', 'fas fa-music', DanceType::class); 
         yield MenuItem::linkToCrud('Les différents cours', 'fas fa-person-running', Course::class);
         yield MenuItem::linkToLogout('Logout', 'fas fa-sign-out-alt');
+    }
+
+    public function configureActions(): Actions
+    {
+        return parent::configureActions()
+            ->add(Crud::PAGE_INDEX, Action::DETAIL);
     }
 }
 
