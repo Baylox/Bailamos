@@ -42,6 +42,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user-friends', User::class);
         yield MenuItem::linkToCrud('Les types de danse', 'fas fa-music', DanceType::class); 
         yield MenuItem::linkToCrud('Les différents cours', 'fas fa-person-running', Course::class);
+        yield MenuItem::linkToUrl('Accueil', 'fas fa-home', $this->generateUrl('app_home'));
         yield MenuItem::linkToLogout('Logout', 'fas fa-sign-out-alt');
     }
 
@@ -49,6 +50,14 @@ class DashboardController extends AbstractDashboardController
     {
         return parent::configureActions()
             ->add(Crud::PAGE_INDEX, Action::DETAIL);
+    }
+
+    public function configureUserMenu(UserInterface $user): UserMenu
+    {
+        return parent::configureUserMenu($user)
+            ->addMenuItems([
+            MenuItem::linkToLogout('Logout', 'fas fa-sign-out-alt'),            
+        ]);
     }
 }
 
