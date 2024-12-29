@@ -17,6 +17,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\Security\Core\User\UserInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -49,4 +51,5 @@ class DashboardController extends AbstractDashboardController
             ->add(Crud::PAGE_INDEX, Action::DETAIL);
     }
 }
+
 

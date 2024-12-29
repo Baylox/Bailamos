@@ -27,6 +27,13 @@
                     <a class="nav-link" href="#">Contact</a>
                 </li>
 
+                <!-- Section connexion ADMIN -->
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" href="{{ path('admin') }}">Administration</a>
+                    </li>
+                {% endif %}
+
                 <!-- Bouton Connexion intégré au menu burger -->
                 <li class="nav-item d-lg-none">
                     <a class="nav-link btn btn-primary text-white px-4 mt-2" href="{{ path('app_login') }}">
