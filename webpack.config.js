@@ -1,64 +1,55 @@
 const Encore = require('@symfony/webpack-encore');
 
-// Configure l'environnement d'exécution (développement ou production)
+// Configure l'environnement d'exécution
 if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
 
 Encore
-    // Répertoire où les assets compilés seront stockés
+    // Répertoire des assets compilés
     .setOutputPath('public/build/')
-
-    // Chemin public utilisé par le serveur pour accéder aux assets compilés
     .setPublicPath('/build')
 
-    // Point d'entrée principal pour votre application (JS et SCSS)
+    // Points d'entrée
     .addEntry('app', './assets/app.js')
+    .addStyleEntry('styles', './assets/styles/app.scss')
 
-    // Divise les fichiers en morceaux plus petits pour optimiser le chargement
+    // Divise les fichiers pour optimiser le chargement
     .splitEntryChunks()
-
-    // Utilise un seul fichier runtime.js pour les dépendances partagées
     .enableSingleRuntimeChunk()
 
-    // Nettoie le répertoire `public/build/` avant chaque build
+    // Nettoyage et notifications
     .cleanupOutputBeforeBuild()
-
-    // Affiche des notifications après chaque build (utile pour le développement)
     .enableBuildNotifications()
 
-    // Ajoute un hash aux noms de fichiers en production pour gérer le cache
+    // Optimisations en fonction de l'environnement (Pour la prod actuellement)
+    .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
-    
-    // Désactive la génération de source maps en production
-    .enableSourceMaps(false)
 
-    // Configure Babel pour gérer les fonctionnalités modernes de JavaScript
+    // Babel (modernisation du JS)
     .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage'; // Charge uniquement les polyfills nécessaires
-        config.corejs = '3.38'; // Utilise CoreJS version 3.38 pour les polyfills
+        config.useBuiltIns = 'usage';
+        config.corejs = 3;
     })
 
-    // Active le support des fichiers SCSS
+    // SCSS avec options conditionnelles
     .enableSassLoader((options) => {
         options.sassOptions = {
-            outputStyle: 'expanded',
+            outputStyle: Encore.isProduction() ? 'compressed' : 'expanded',
         };
     }, {
-        resolveUrlLoader: true, // Active resolve-url-loader
+        resolveUrlLoader: true,
     })
-    .copyFiles({
-        from: './assets/images', // Copier toutes les images
-        to: 'images/[path][name].[ext]', // Les placer dans 'public/build/images'
-    });
-    
-    // Ajoute d'autres fonctionnalités si nécessaire (par exemple jQuery)
-    //.autoProvidejQuery()
 
-    Encore.copyFiles({
-        from: './assets/images', // Source des images
-        to: 'images/[path][name].[ext]', // Destination des images dans 'public/build'
-    });    
+    // Gestion des fichiers statiques (images)
+    .copyFiles({
+        from: './assets/images',
+        to: 'images/[path][name].[ext]',
+    })
+
+    // Activation de possibles fonctionnalités supplémentaires pour la suite du projet
+    //.enableReactPreset()
+    //.enableTypeScriptLoader()
 ;
 
 module.exports = Encore.getWebpackConfig();
