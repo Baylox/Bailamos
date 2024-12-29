@@ -23,6 +23,10 @@ class Course
     #[ORM\Column]
     private ?int $duration = null;
 
+    #[ORM\ManyToOne(inversedBy: 'courses')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?DanceType $dance = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +64,18 @@ class Course
     public function setDuration(int $duration): static
     {
         $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function getDance(): ?DanceType
+    {
+        return $this->dance;
+    }
+
+    public function setDance(?DanceType $dance): static
+    {
+        $this->dance = $dance;
 
         return $this;
     }
