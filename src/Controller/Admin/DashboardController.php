@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use App\Controller\Admin\UserCrudController;
+use App\Entity\DanceType;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -29,6 +31,7 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-users', User::class);
+        yield MenuItem::linkToCrud('Les types de danse', 'fas fa-person-dress', DanceType::class);  
     }
 }
 
