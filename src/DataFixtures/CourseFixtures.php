@@ -27,9 +27,9 @@ class CourseFixtures extends Fixture implements DependentFixtureInterface
         foreach (range(1, 10) as $i) {
             $course = new Course();
             $course->setTitle($faker->sentence(3)) 
-                   ->setDateTime($faker->dateTimeBetween('now', '+6 months')) 
-                   ->setDuration($faker->randomElement([60, 90, 120]))
-                   ->setDance($faker->randomElement($danceTypes)); // On associe un type de danse
+                ->setDateTime($faker->dateTimeBetween('now', '+6 months')) 
+                ->setDuration($faker->randomElement([60, 90, 120]))
+                ->setDance($faker->randomElement($danceTypes)); // On associe un type de danse
 
             $manager->persist($course);
         }
