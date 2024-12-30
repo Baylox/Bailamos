@@ -2,4 +2,16 @@
 @import 'base/variables';
 @import 'base/typography';
 
-@import "../../node_modules/bootstrap/scss/bootstrap";
+$my-font-sans-serif: 'Poppins', sans-serif;
+$my-headings-font: 'Playfair Display', serif;
+
+
+body {
+    font-family: $my-font-sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: $my-headings-font;
+    font-weight: bold;
+}
+
