@@ -12,8 +12,8 @@ Encore
 
     // Points d'entrée
     .addEntry('app', './assets/app.js')
-    .addStyleEntry('styles', './assets/styles/app.scss')
-
+    .addStyleEntry('admin', './assets/styles/admin.scss')
+    
     // Divise les fichiers pour optimiser le chargement
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
