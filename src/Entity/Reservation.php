@@ -24,8 +24,14 @@ class Reservation
     #[ORM\Column]
     private ?\DateTimeImmutable $reserved_at = null;
 
-    #[ORM\Column(length: 20)]
-    private ?string $status = null;
+    #[ORM\Column(type: 'boolean', nullable: false)]
+    private ?bool $confirmed = null;
+
+    public function __construct()
+    {
+        $this->confirmed = true; 
+        $this->reserved_at = new \DateTimeImmutable(); 
+    }
 
     public function getId(): ?int
     {
@@ -40,7 +46,6 @@ class Reservation
     public function setUser(?User $user): static
     {
         $this->user = $user;
-
         return $this;
     }
 
@@ -52,7 +57,6 @@ class Reservation
     public function setCourse(?Course $course): static
     {
         $this->course = $course;
-
         return $this;
     }
 
@@ -64,19 +68,18 @@ class Reservation
     public function setReservedAt(\DateTimeImmutable $reserved_at): static
     {
         $this->reserved_at = $reserved_at;
-
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function isConfirmed(): ?bool
     {
-        return $this->status;
+        return $this->confirmed;
     }
 
-    public function setStatus(string $status): static
+    public function setConfirmed(bool $confirmed): static
     {
-        $this->status = $status;
-
+        $this->confirmed = $confirmed;
         return $this;
     }
 }
+

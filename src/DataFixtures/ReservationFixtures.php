@@ -31,7 +31,7 @@ class ReservationFixtures extends Fixture implements DependentFixtureInterface
             $reservation->setUser($faker->randomElement($users)) // On associe un utilisateur existant
                         ->setCourse($faker->randomElement($courses)) // On associe un cours existant
                         ->setReservedAt(new \DateTimeImmutable($faker->dateTimeBetween('-6 months', 'now')->format('Y-m-d H:i:s'))) // On génère une date aléatoire
-                        ->setStatus($faker->randomElement(['confirmée', 'en attente', 'annulée'])); // On choisit un statut aléatoire
+                        ->setConfirmed($faker->boolean(75)); // 75% de chances que la réservation soit confirmée
 
             $manager->persist($reservation);
         }
