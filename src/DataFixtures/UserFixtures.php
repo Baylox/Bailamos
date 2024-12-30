@@ -22,15 +22,20 @@ class UserFixtures extends Fixture
         for ($i = 1; $i <= 10; $i++) {
             $user = new User();
             $user->setEmail("student{$i}@bayalamo.com");
+            $user->setFirstName("Steeve{$i}");
+            $user->setLastName("Kevin{$i}");
             $user->setRoles(['ROLE_STUDENT']);
             $hashedPassword = $this->passwordHasher->hashPassword($user, 'password');
             $user->setPassword($hashedPassword);
 
             $manager->persist($user);
         }
+
         // Création d'un utilisateur
         $user = new User();
         $user->setEmail('Clarissia@BayAlamo.com');
+        $user->setFirstName('Clarissia');
+        $user->setLastName('Parla');
         $user->setRoles(['ROLE_TEACHER']);
         $hashedPassword = $this->passwordHasher->hashPassword($user, 'password');
         $user->setPassword($hashedPassword);
@@ -40,6 +45,8 @@ class UserFixtures extends Fixture
         // Création d'un admin
         $admin = new User();
         $admin->setEmail('admin@BayAlamo.com');
+        $admin->setfirstName('Alex');
+        $admin->setlastName('Park');
         $admin->setRoles(['ROLE_ADMIN']);
         $hashedPassword = $this->passwordHasher->hashPassword($admin, 'password');
         $admin->setPassword($hashedPassword);
