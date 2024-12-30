@@ -25,11 +25,9 @@ class ReservationCrudController extends AbstractCrudController
             AssociationField::new('user', 'Utilisateur'),
             AssociationField::new('course', 'Cours'),
             DateTimeField::new('reserved_at', 'Réservé le')           
-                ->setFormTypeOption('disabled', true) 
-                ->hideOnIndex(), // Masqué dans la vue index
+                ->setFormTypeOption('disabled', true),
             
             BooleanField::new('confirmed', 'Confirmé')
         ];
     }
-    
 }
