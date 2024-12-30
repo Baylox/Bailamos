@@ -25,6 +25,9 @@ class DanceType
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $image = null;
+
     /**
      * @var Collection<int, Course>
      */
@@ -95,6 +98,18 @@ class DanceType
         return $this;
     }
 
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+    
     public function __toString(): string
     {
         return $this->name ?? 'N/A'; // Retourne le nom de la danse
