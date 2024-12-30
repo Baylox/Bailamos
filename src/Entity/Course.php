@@ -29,17 +29,6 @@ class Course
     #[ORM\JoinColumn(nullable: false)]
     private ?DanceType $dance = null;
 
-    /**
-     * @var Collection<int, Reservation>
-     */
-    #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'course')]
-    private Collection $reservations;
-
-    public function __construct()
-    {
-        $this->reservations = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -89,36 +78,6 @@ class Course
     public function setDance(?DanceType $dance): static
     {
         $this->dance = $dance;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Reservation>
-     */
-    public function getReservations(): Collection
-    {
-        return $this->reservations;
-    }
-
-    public function addReservation(Reservation $reservation): static
-    {
-        if (!$this->reservations->contains($reservation)) {
-            $this->reservations->add($reservation);
-            $reservation->setCourse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeReservation(Reservation $reservation): static
-    {
-        if ($this->reservations->removeElement($reservation)) {
-            // set the owning side to null (unless already changed)
-            if ($reservation->getCourse() === $this) {
-                $reservation->setCourse(null);
-            }
-        }
 
         return $this;
     }

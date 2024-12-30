@@ -6,7 +6,6 @@ namespace App\Controller\Admin;
 use App\Controller\Admin\UserCrudController;
 use App\Entity\Course;
 use App\Entity\DanceType;
-use App\Entity\Reservation;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -43,7 +42,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user-friends', User::class);
         yield MenuItem::linkToCrud('Les types de danse', 'fas fa-music', DanceType::class); 
         yield MenuItem::linkToCrud('Les différents cours', 'fas fa-person-running', Course::class);
-        yield MenuItem::linkToCrud('Les Réservations', 'fas fa-calendar-check', Reservation::class);
+
 
 
         yield MenuItem::linkToUrl('Accueil', 'fas fa-home', $this->generateUrl('app_home'));
