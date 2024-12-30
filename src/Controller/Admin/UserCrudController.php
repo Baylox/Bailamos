@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -23,7 +24,7 @@ class UserCrudController extends AbstractCrudController
         return [
             TextField::new('fullName')
             ->setLabel('Prénom et Nom')
-            ->hideOnForm(), // Impossible de modifier le nom complet
+            ->onlyOnIndex(), // Impossible de modifier le nom complet
             TextField::new('firstName')
             ->setLabel('Prénom')
             ->hideOnIndex(), // Ne s'affiche pas dans la liste des utilisateurs
@@ -32,7 +33,12 @@ class UserCrudController extends AbstractCrudController
             ->hideOnIndex(),
 
             EmailField::new('email'),
-            ArrayField::new('roles'),
+            ChoiceField::new('roles')
+            ->setChoices(array_combine($roles = ['ROLE_TEACHER', 'ROLE_STUDENT'], $roles))
+            ->allowMultipleChoices()
+            ->renderExpanded()
+                ->setHelp('Les rôles disponibles sont professeurs (ROLE_TEACHER) et étudiants (ROLE_STUDENT)')
+            ->renderAsBadges()
         ];
     }    
 }
