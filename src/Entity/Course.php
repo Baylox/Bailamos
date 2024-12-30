@@ -29,6 +29,20 @@ class Course
     #[ORM\JoinColumn(nullable: false)]
     private ?DanceType $dance = null;
 
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'courses')]
+    private Collection $students;
+
+    #[ORM\Column(length: 20)]
+    private ?string $day_of_week = null;
+
+    public function __construct()
+    {
+        $this->students = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,5 +99,41 @@ class Course
     public function __toString(): string
     {
         return $this->title ?? 'N/A'; // Retourne le titre du cours pour EasyAdmin
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getStudents(): Collection
+    {
+        return $this->students;
+    }
+
+    public function addStudent(User $student): static
+    {
+        if (!$this->students->contains($student)) {
+            $this->students->add($student);
+        }
+
+        return $this;
+    }
+
+    public function removeStudent(User $student): static
+    {
+        $this->students->removeElement($student);
+
+        return $this;
+    }
+
+    public function getDayOfWeek(): ?string
+    {
+        return $this->day_of_week;
+    }
+
+    public function setDayOfWeek(string $day_of_week): static
+    {
+        $this->day_of_week = $day_of_week;
+
+        return $this;
     }
 }
