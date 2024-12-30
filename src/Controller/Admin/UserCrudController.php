@@ -22,7 +22,15 @@ class UserCrudController extends AbstractCrudController
     {
         return [
             TextField::new('fullName')
-            ->setLabel('Prénom et Nom'),
+            ->setLabel('Prénom et Nom')
+            ->hideOnForm(), // Impossible de modifier le nom complet
+            TextField::new('firstName')
+            ->setLabel('Prénom')
+            ->hideOnIndex(), // Ne s'affiche pas dans la liste des utilisateurs
+            TextField::new('lastName')
+            ->setLabel('Nom')
+            ->hideOnIndex(),
+
             EmailField::new('email'),
             ArrayField::new('roles'),
         ];
