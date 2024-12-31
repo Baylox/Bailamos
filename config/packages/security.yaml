@@ -38,6 +38,11 @@ security:
             - { path: ^/teacher, roles: ROLE_TEACHER }
             - { path: ^/student, roles: ROLE_STUDENT }
 
+    role_hierarchy:
+        ROLE_STUDENT: []
+        ROLE_TEACHER: [ROLE_STUDENT]
+        ROLE_ADMIN: [ROLE_TEACHER, ROLE_STUDENT]
+
 when@test:
     security:
         password_hashers:
