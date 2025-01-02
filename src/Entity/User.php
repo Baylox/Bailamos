@@ -9,10 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cet email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -49,6 +51,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private bool $isVerified = false;
+
+    #[ORM\Column(type: 'boolean', options: ['default' => false])]
+    private bool $isTeacher = false;
 
     public function __construct()
     {
@@ -90,6 +95,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
+
+        // Ajoute automatiquement ROLE_TEACHER si isTeacher est vrai
+        if ($this->isTeacher && !in_array('ROLE_TEACHER', $roles)) {
+            $roles[] = 'ROLE_TEACHER';
+        }
+
+        // Ajoute toujours ROLE_USER
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
@@ -102,12 +114,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->roles = $roles;
 
+        // Synchronise isTeacher avec les rôles
+        $this->isTeacher = in_array('ROLE_TEACHER', $roles);
+
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
     public function getPassword(): ?string
     {
         return $this->password;
@@ -120,9 +132,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
@@ -155,7 +164,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getFullName(): ?string
     {
-        return $this->firstName.' '.$this->lastName;
+        return $this->firstName . ' ' . $this->lastName;
     }
 
     public function __toString(): string
@@ -201,4 +210,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function isTeacher(): bool
+    {
+        return $this->isTeacher;
+    }
+
+    public function setIsTeacher(bool $isTeacher): static
+    {
+        $this->isTeacher = $isTeacher;
+
+        // Synchronise le rôle ROLE_TEACHER avec isTeacher
+        if ($isTeacher && !in_array('ROLE_TEACHER', $this->roles)) {
+            $this->roles[] = 'ROLE_TEACHER';
+        } elseif (!$isTeacher) {
+            $this->roles = array_filter($this->roles, fn($role) => $role !== 'ROLE_TEACHER');
+        }
+
+        return $this;
+    }
+
+    #[Assert\Callback]
+    public function validateTeacherStatus(ExecutionContextInterface $context): void
+    {
+        if ($this->isTeacher && !in_array('ROLE_TEACHER', $this->roles)) {
+            $context->buildViolation('Un enseignant doit avoir le rôle ROLE_TEACHER.')
+                ->atPath('roles')
+                ->addViolation();
+        }
+
+        if (!$this->isTeacher && in_array('ROLE_TEACHER', $this->roles)) {
+            $context->buildViolation('Un utilisateur avec le rôle ROLE_TEACHER doit être marqué comme enseignant.')
+                ->atPath('isTeacher')
+                ->addViolation();
+        }
+    }
 }
+
