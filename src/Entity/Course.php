@@ -19,8 +19,8 @@ class Course
     #[ORM\Column(length: 150)]
     private ?string $title = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date_time = null;
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $time = null;
 
     #[ORM\Column]
     private ?int $duration = null;
@@ -60,14 +60,14 @@ class Course
         return $this;
     }
 
-    public function getDateTime(): ?\DateTimeInterface
+    public function getTime(): ?\DateTimeInterface
     {
-        return $this->date_time;
+        return $this->time;
     }
 
-    public function setDateTime(\DateTimeInterface $date_time): static
+    public function setTime(\DateTimeInterface $time): static
     {
-        $this->date_time = $date_time;
+        $this->time = $time;
 
         return $this;
     }
