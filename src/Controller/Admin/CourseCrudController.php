@@ -5,10 +5,10 @@ namespace App\Controller\Admin;
 use App\Entity\Course;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 
 class CourseCrudController extends AbstractCrudController
 {
@@ -21,10 +21,24 @@ class CourseCrudController extends AbstractCrudController
     {
         return [
             TextField::new('title', 'Titre du cours'),
-            TimeField::new('time', 'Heure'),
+            TimeField::new('time', 'Heure')
+                ->setFormat('HH:mm'), // Format 24h
+
             NumberField::new('duration', 'Durée (minutes)'),
             AssociationField::new('dance', 'Type de danse'),
+
+            ChoiceField::new('day_of_week', 'Jour de la semaine')
+            ->setChoices([
+                'Lundi' => 'Lundi',
+                'Mardi' => 'Mardi',
+                'Mercredi' => 'Mercredi',
+                'Jeudi' => 'Jeudi',
+                'Vendredi' => 'Vendredi',
+                'Samedi' => 'Samedi',
+                'Dimanche' => 'Dimanche',
+            ])
         ];
     }
 }
+
 
