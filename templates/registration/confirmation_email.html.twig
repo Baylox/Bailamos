@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Style global */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #F7F9F9; 
+            font-family: 'Poppins', Arial, sans-serif; 
+            line-height: 1.6;
+            color: #1D3557; 
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #FFFFFF; 
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); 
+            overflow: hidden;
+        }
+
+        .email-header {
+            background-color: #E63946; 
+            color: #FFFFFF; 
+            text-align: center;
+            padding: 30px 20px;
+            font-family: 'Playfair Display', serif; 
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .email-content {
+            padding: 20px 30px;
+            font-size: 16px;
+        }
+
+        .email-content p {
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #F4A261; /* Orange clair */
+            color: #FFFFFF; 
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #D98A3E; /* Orange plus foncé au survol */
+        }
+
+        .email-footer {
+            background-color: #F7F9F9; /* Couleur claire */
+            color: #888888; /* Gris pour le texte secondaire */
+            font-size: 12px;
+            text-align: center;
+            padding: 15px 10px;
+        }
+
+        .email-footer a {
+            color: #1D3557; /* Bleu nuit */
+            text-decoration: none;
+        }
+
+        .email-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- En-tête -->
+        <div class="email-header">
+            Bienvenue à BayAlamo !
+        </div>
+
+        <!-- Contenu principal -->
+        <div class="email-content">
+            <p>
+                Bonjour, et merci de vous inscrire à nos cours de danse ! Pour finaliser votre inscription, veuillez confirmer votre adresse email en cliquant sur le bouton ci-dessous :
+            </p>
+            <p style="text-align: center;">
+                <a href="{{ signedUrl|raw }}" class="cta-button">Confirmer mon email</a>
+            </p>
+            <p>
+                Ce lien est valide pendant une durée limitée et expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+            </p>
+            <p>
+                À très bientôt sur la piste de danse !<br>
+                — L'équipe BayAlamo
+            </p>
+        </div>
+
+        <!-- Pied de page -->
+        <div class="email-footer">
+            Vous avez des questions ? Contactez-nous à <a href="mailto:support@bayalamo.com">support@bayalamo.com</a>.<br>
+            © 2025 BayAlamo. Tous droits réservés.
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
