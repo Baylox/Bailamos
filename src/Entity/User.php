@@ -216,6 +216,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->isTeacher;
     }
 
+    // Permet de définir si l'utilisateur est un enseignant
     public function setIsTeacher(bool $isTeacher): static
     {
         $this->isTeacher = $isTeacher;
@@ -230,6 +231,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // Valide que l'utilisateur a le rôle ROLE_TEACHER si isTeacher est vrai
     #[Assert\Callback]
     public function validateTeacherStatus(ExecutionContextInterface $context): void
     {
@@ -245,6 +247,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 ->addViolation();
         }
     }
+
+    // Retourne le rôle le plus élevé de l'utilisateur
     public function getHighestRole(): string
     {
 
