@@ -10,6 +10,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -17,28 +20,49 @@ class UserCrudController extends AbstractCrudController
     {
         return User::class;
     }
-
     
     public function configureFields(string $pageName): iterable
     {
+        // Définition des choix pour les rôles
+        $rolesChoices = [
+            'Administrateur' => 'ROLE_ADMIN',
+            'Professeur' => 'ROLE_TEACHER',
+            'Etudiant' => 'ROLE_STUDENT',
+            'Utilisateur' => 'ROLE_USER',
+        ];
+
         return [
+            // Nom complet (affiché dans la liste)
             TextField::new('fullName')
-            ->setLabel('Prénom et Nom')
-            ->onlyOnIndex(), // Impossible de modifier le nom complet
+                ->setLabel('Prénom et Nom')
+                ->onlyOnIndex(),
+
+            // Prénom et Nom (pour les formulaires)
             TextField::new('firstName')
-            ->setLabel('Prénom')
-            ->hideOnIndex(), // Ne s'affiche pas dans la liste des utilisateurs
+                ->setLabel('Prénom')
+                ->hideOnIndex(),
             TextField::new('lastName')
-            ->setLabel('Nom')
-            ->hideOnIndex(),
+                ->setLabel('Nom')
+                ->hideOnIndex(),
 
             EmailField::new('email'),
+
             ChoiceField::new('roles')
-            ->setChoices(array_combine($roles = ['ROLE_TEACHER', 'ROLE_STUDENT'], $roles))
-            ->allowMultipleChoices()
-            ->renderExpanded()
-                ->setHelp('Les rôles disponibles sont professeurs (ROLE_TEACHER) et étudiants (ROLE_STUDENT)')
-            ->renderAsBadges()
+                ->setLabel('Rôles')
+                ->setChoices($rolesChoices)
+                ->allowMultipleChoices()
+                ->renderExpanded()
+                ->renderAsBadges(),
+
+            // Email vérifié
+            BooleanField::new('isVerified')
+            ->setLabel('Email vérifié')
+            ->renderAsSwitch(false),
+
+            // Liste des cours associés à l'utilisateur
+            AssociationField::new('courses')
+                ->setLabel('Cours')
+                ->hideOnForm(), 
         ];
     }    
 }
