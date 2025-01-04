@@ -245,5 +245,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 ->addViolation();
         }
     }
+    public function getHighestRole(): string
+    {
+
+    $rolesHierarchy = [
+        'ROLE_ADMIN' => 1,
+        'ROLE_TEACHER' => 2,
+        'ROLE_STUDENT' => 3,
+        'ROLE_USER' => 4,
+    ];
+
+    $roleLabels = [
+        'ROLE_ADMIN' => 'Administrateur',
+        'ROLE_TEACHER' => 'Professeur',
+        'ROLE_STUDENT' => 'Étudiant',
+        'ROLE_USER' => 'Utilisateur',
+    ];
+
+    $highestRole = 'ROLE_USER'; // On part du plus bas rôle pour incrémenter par la suite
+
+    foreach ($this->getRoles() as $role) {
+        if (isset($rolesHierarchy[$role]) && $rolesHierarchy[$role] < $rolesHierarchy[$highestRole]) {
+            $highestRole = $role;
+        }
+    }
+    
+    // Retourne le label du rôle le plus élevé ou le rôle lui-même s'il n'y a pas de label
+    return $roleLabels[$highestRole] ?? $highestRole;
+    }
 }
 
