@@ -6,7 +6,11 @@
 @import 'components/buttons';
 @import 'components/cards';
 
+// Import des fichiers de layout
 @import 'layout/navbar';
+
+// Import des fichiers de pages
+// @import 'pages/home';
 
 // Import de Bootstrap
 @import "../../node_modules/bootstrap/scss/bootstrap";
