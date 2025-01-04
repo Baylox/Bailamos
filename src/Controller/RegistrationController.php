@@ -48,6 +48,8 @@ class RegistrationController extends AbstractController
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
 
+            $this->addFlash('success', 'Un email de confirmation a été envoyé à votre adresse email.');
+
 
             return $this->redirectToRoute('app_home');
         }
@@ -56,6 +58,7 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form,
         ]);
     }
+
 
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
