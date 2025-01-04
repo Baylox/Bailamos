@@ -61,8 +61,14 @@ class UserCrudController extends AbstractCrudController
 
             // Liste des cours associés à l'utilisateur
             AssociationField::new('courses')
-                ->setLabel('Cours')
-                ->hideOnForm(), 
+            ->setLabel('Danses associées')
+            ->formatValue(function ($value, $entity) {
+                return implode(' || ', $entity->getCourses()->map(function ($course) 
+                {
+                    return $course->getDance() ? $course->getDance()->getName() : 'Aucune danse associée';
+                })->toArray());
+            })
+            ->hideOnForm(),   
         ];
     }    
 }
