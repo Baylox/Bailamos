@@ -34,23 +34,41 @@
                     </li>
                 {% endif %}
 
-                <!-- Bouton Connexion intégré au menu burger -->
-                <li class="nav-item d-lg-none">
-                    <a class="nav-link btn btn-primary text-white px-4 mt-2" href="{{ path('app_login') }}">
-                        Connexion
-                    </a>
-                </li>
+                <!-- Bouton Connexion/Déconnexion intégré au menu burger -->
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link btn btn-danger text-white px-4 mt-2" href="{{ path('app_logout') }}">
+                            Déconnexion
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link btn btn-primary text-white px-4 mt-2" href="{{ path('app_login') }}">
+                            Connexion
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
 
-        <!-- Bouton Connexion visible uniquement sur écrans larges -->
-        <a class="btn btn-primary d-none d-lg-block ms-auto" 
-        href="{{ path('app_login') }}" 
-        data-aos="fade-left" 
-        data-aos-duration="600" 
-        data-aos-delay="100">
-        Connexion
-        </a>
+        <!-- Bouton Connexion/Déconnexion visible uniquement sur écrans larges -->
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a class="btn btn-primary d-none d-lg-block ms-auto" 
+            href="{{ path('app_logout') }}" 
+            data-aos="fade-left" 
+            data-aos-duration="600" 
+            data-aos-delay="100">
+            Déconnexion
+            </a>
+        {% else %}
+            <a class="btn btn-primary d-none d-lg-block ms-auto" 
+            href="{{ path('app_login') }}" 
+            data-aos="fade-left" 
+            data-aos-duration="600" 
+            data-aos-delay="100">
+            Connexion
+            </a>
+        {% endif %}
     </div>
 </nav>
 
