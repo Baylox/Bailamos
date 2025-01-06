@@ -1,18 +1,15 @@
-//import './bootstrap.js';
-/*
- * Welcome to your app's main JavaScript file!
- *
- * This file will be included onto the page via the importmap() Twig function,
- * which should already be in your base.html.twig.
- */
-
-import 'bootstrap';
+// Import des styles
 import './styles/app.scss';
 
-//import './js/burgerNav.js';
 
+// Import des dépendances tierces
+import 'bootstrap';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-// Initialisation d'AOS
+
+// Import des scripts personnalisés
+//import './js/burgerNav.js';
+
+// Initialisation des dépendances
 AOS.init({});
