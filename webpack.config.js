@@ -25,6 +25,9 @@ Encore
     // Optimisations en fonction de l'environnement (Pour la prod actuellement)
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
+    
+    // Activation de React
+    .enableReactPreset()
 
     // Babel (modernisation du JS)
     .configureBabelPresetEnv((config) => {
@@ -48,7 +51,6 @@ Encore
     })
 
     // Activation de possibles fonctionnalités supplémentaires pour la suite du projet
-    //.enableReactPreset()
     //.enableTypeScriptLoader()
 ;
 
