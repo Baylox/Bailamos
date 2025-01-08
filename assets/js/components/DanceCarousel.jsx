@@ -1,43 +1,87 @@
 import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules"; // Modules pour la navigation et la pagination
+import "swiper/css"; // Styles de base de Swiper
+import "swiper/css/navigation"; // Pour la navigation
+import "swiper/css/pagination"; // Pour la pagination
 
-const CourseList = () => {
-  const [courses, setCourses] = useState([]);
-  const [loading, setLoading] = useState(true);
+const CourseCarousel = () => {
+  const [courses, setCourses] = useState([]); // Stockage des cours
+  const [loading, setLoading] = useState(true); // Gestion du chargement
+  const [error, setError] = useState(null); // Gestion des erreurs
 
+  // Récupération des données via l'API
   useEffect(() => {
-    // Appel de l'API pour récupérer les cours
-    fetch('/api/courses')
-      .then(response => response.json())
-      .then(data => {
+    fetch("/api/courses")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP : ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
         setCourses(data);
         setLoading(false);
       })
-      .catch(error => console.error('Erreur lors du chargement des cours:', error));
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
   }, []);
 
   if (loading) {
-    return <p>Chargement des cours...</p>;
+    return <p>Chargement des cours...</p>; 
+  }
+
+  if (error) {
+    return <p>Erreur : {error}</p>; 
   }
 
   return (
-    <div>
-      <h2>Liste des cours</h2>
-      <ul>
-        {courses.map(course => (
-          <li key={course.id}>
-            <h3>{course.title}</h3>
-            <p>
-              Heure : {course.time} <br />
-              Durée : {course.duration} minutes <br />
-              Type de danse : {course.dance} <br />
-              Jour : {course.day_of_week} <br />
-            </p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Swiper
+      className="carousel-container"
+      modules={[Navigation, Pagination]}
+      navigation
+      pagination={{ clickable: true }}
+      spaceBetween={30}
+      slidesPerView={1}
+      breakpoints={{
+        640: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      }}
+    >
+      {courses.map((course) => (
+        <SwiperSlide key={course.id}>
+          <div
+            className="course-card"
+            style={{
+              backgroundImage: `url(${course.dance.image})`, // Image dynamique
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              height: "300px", // Ajuste la hauteur ici
+              borderRadius: "10px", // Coins arrondis
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Optionnel : ombre légère
+            }}
+            data-dance={course.dance.name}
+          >
+            <div className="course-overlay">
+              <h3>{course.title}</h3>
+              <p><strong>Type de danse :</strong> {course.dance.name}</p>
+              <p><strong>Heure :</strong> {course.time}</p>
+              <p><strong>Jour :</strong> {course.day_of_week}</p>
+              <p><strong>Durée :</strong> {course.duration} minutes</p>
+            </div>
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 };
 
-export default CourseList;
+export default CourseCarousel;
+
+
+
 
