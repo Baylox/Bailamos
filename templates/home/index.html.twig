@@ -1,12 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}HomeController{% endblock %}
 
 {% block body %}
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
     {% for type, messages in app.flashes %}
         {% for message in messages %}
             <div class="alert alert-{{ type }}">
@@ -15,15 +13,7 @@
         {% endfor %}
     {% endfor %}
 
-    </div>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Env/Workspace/Studi/Bailamos/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>C:/Env/Workspace/Studi/Bailamos/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
-
 {# Ajoute un conteneur React ici #}
 <div id="react-root"></div>
+
 {% endblock %}

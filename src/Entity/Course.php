@@ -136,4 +136,10 @@ class Course
 
         return $this;
     }
+
+    public function getDanceImage(): ?string
+    {
+        // Vérifie si une danse est associée et retourne son image ou une valeur par défaut
+        return $this->dance?->getImage() ?? '/images/danse1.jpg';
+    }
 }
