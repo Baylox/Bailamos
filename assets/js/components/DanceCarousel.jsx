@@ -58,6 +58,12 @@ const CourseCarousel = () => {
             className="course-card"
             style={{
               backgroundImage: `url(${course.dance.image})`, // Image dynamique
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              height: "400px", 
+              borderRadius: "10px", // Coins arrondis
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
             }}
             data-dance={course.dance.name}
           >
