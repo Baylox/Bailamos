@@ -2,7 +2,9 @@
     "devDependencies": {
         "@babel/core": "^7.26.0",
         "@babel/preset-env": "^7.26.0",
+        "@babel/preset-react": "^7.26.3",
         "@symfony/webpack-encore": "^5.0.0",
+        "babel-loader": "^9.2.1",
         "core-js": "^3.38.0",
         "file-loader": "^6.0.0",
         "regenerator-runtime": "^0.13.9",
@@ -21,11 +23,9 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "@babel/preset-react": "^7.26.3",
         "@popperjs/core": "^2.11.8",
         "animate.css": "^4.1.1",
         "aos": "^2.3.4",
-        "babel-loader": "^9.2.1",
         "bootstrap": "^5.3.3",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
