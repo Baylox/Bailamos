@@ -3,52 +3,55 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <div class="container mt-5">
+    <div class="registration-container">
         {% for flash_error in app.flashes('verify_email_error') %}
-            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+            <div class="alert alert-danger registration-flash">{{ flash_error }}</div>
         {% endfor %}
 
-        <h1 class="text-center mb-4">Créer un compte</h1>
+        <h1 class="registration-title">Créer un compte</h1>
 
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                {{ form_start(registrationForm, {'attr': {'class': 'form'}}) }}
+        <div class="registration-form-wrapper">
+            <div class="registration-form-container">
+                {{ form_start(registrationForm, {'attr': {'class': 'registration-form'}}) }}
 
-                <div class="mb-3">
-                    {{ form_label(registrationForm.email, 'Adresse email', {'label_attr': {'class': 'form-label'}}) }}
-                    {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                <div class="registration-form-group">
+                    {{ form_label(registrationForm.email, 'Adresse email', {'label_attr': {'class': 'registration-label'}}) }}
+                    {{ form_widget(registrationForm.email, {'attr': {'class': 'registration-input'}}) }}
                     {{ form_errors(registrationForm.email) }}
                 </div>
 
-                <div class="mb-3">
-                    {{ form_label(registrationForm.firstName, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
-                    {{ form_widget(registrationForm.firstName, {'attr': {'class': 'form-control'}}) }}
+                <div class="registration-form-group">
+                    {{ form_label(registrationForm.firstName, 'Prénom', {'label_attr': {'class': 'registration-label'}}) }}
+                    {{ form_widget(registrationForm.firstName, {'attr': {'class': 'registration-input'}}) }}
                     {{ form_errors(registrationForm.firstName) }}
                 </div>
 
-                <div class="mb-3">
-                    {{ form_label(registrationForm.lastName, 'Nom de famille', {'label_attr': {'class': 'form-label'}}) }}
-                    {{ form_widget(registrationForm.lastName, {'attr': {'class': 'form-control'}}) }}
+                <div class="registration-form-group">
+                    {{ form_label(registrationForm.lastName, 'Nom de famille', {'label_attr': {'class': 'registration-label'}}) }}
+                    {{ form_widget(registrationForm.lastName, {'attr': {'class': 'registration-input'}}) }}
                     {{ form_errors(registrationForm.lastName) }}
                 </div>
 
-                <div class="mb-3">
-                    {{ form_label(registrationForm.plainPassword, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
-                    {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                <div class="registration-form-group">
+                    {{ form_label(registrationForm.plainPassword, 'Mot de passe', {'label_attr': {'class': 'registration-label'}}) }}
+                    {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'registration-input'}}) }}
                     {{ form_errors(registrationForm.plainPassword) }}
                 </div>
 
-                <div class="mb-3 form-check">
-                    {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
-                    {{ form_label(registrationForm.agreeTerms, 'J\'accepte les termes et conditions', {'label_attr': {'class': 'form-check-label'}}) }}
+                <div class="registration-form-group registration-terms">
+                    {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'registration-checkbox'}}) }}
+                    {{ form_label(registrationForm.agreeTerms, 'J\'accepte les termes et conditions', {'label_attr': {'class': 'registration-label-checkbox'}}) }}
                     {{ form_errors(registrationForm.agreeTerms) }}
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
+                <button type="submit" class="registration-submit">S'inscrire</button>
+
+                <a href="/login" class="registration-login-link">Déjà inscrit ? Se connecter</a>
 
                 {{ form_end(registrationForm) }}
             </div>
         </div>
     </div>
 {% endblock %}
+
 

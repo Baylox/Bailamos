@@ -1,0 +1,113 @@
+.registration-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+
+    .registration-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: $primary;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .registration-form-wrapper {
+        display: flex;
+        justify-content: center;
+
+        .registration-form-container {
+            width: 100%;
+            max-width: 600px;
+        }
+    }
+
+    .registration-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .registration-form-group {
+        margin-bottom: 20px;
+
+        .registration-label {
+            font-size: 1.1rem;
+            color: $dark;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .registration-input {
+            width: 100%;
+            border: 2px solid $secondary;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+
+            &:focus {
+                border-color: $primary;
+                box-shadow: 0 0 5px $primary;
+            }
+        }
+
+        .registration-error {
+            color: $danger;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+    }
+
+    .registration-terms {
+        display: flex;
+        align-items: center;
+
+        .registration-checkbox {
+            margin-right: 10px;
+            border-color: $secondary;
+
+            &:checked {
+                background-color: $primary;
+                border-color: $primary;
+            }
+        }
+
+        .registration-label-checkbox {
+            font-size: 0.9rem;
+            color: $dark;
+        }
+    }
+
+    .registration-submit {
+        background-color: $primary;
+        border: none;
+        color: $light;
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 12px;
+        border-radius: 5px;
+        width: 100%;
+        margin-top: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: darken($primary, 10%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .registration-login-link {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: $bay-deep-blue;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: darken($secondary, 10%);
+        }
+    }
+}
