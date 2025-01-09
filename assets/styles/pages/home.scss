@@ -1,3 +1,4 @@
+// Section Hero
 .club-presentation {
     background-color: $dark;
     color: $dark;
@@ -109,4 +110,49 @@
     }
 }
 
+// Page d'inscription
+.club-cta {
+    background-color: $bay-dark; // Couleur de fond légère pour contraste
+    padding: 60px 20px;
+    text-align: center;
+
+    .cta-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .cta-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: $primary; // Rouge vif pour attirer l'attention
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); // Ajoute une légère ombre pour le style
+    }
+
+    .cta-intro {
+        font-size: 1.2rem;
+        color: $bay-light; // Blanc pour contraste
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+
+    .cta-btn {
+        display: inline-block;
+        font-size: 1.2rem;
+        padding: 12px 30px;
+        background-color: $primary; 
+        color: $light; // Texte blanc
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        &:hover {
+            background-color: darken($primary, 10%); 
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+    }
+}
 

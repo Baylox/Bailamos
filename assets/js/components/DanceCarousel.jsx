@@ -45,7 +45,7 @@ const CourseCarousel = () => {
       pagination={{ clickable: true }}
       spaceBetween={40}
       slidesPerView={1}
-      initialSlide={2} // Slide initial au milieu
+      initialSlide={1} // Slide initial au milieu (0.1.2)
       breakpoints={{
         640: { slidesPerView: 1 },
         768: { slidesPerView: 2 },
