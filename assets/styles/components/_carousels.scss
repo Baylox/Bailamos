@@ -2,7 +2,7 @@
 .carousel-container {
   width: 100%;
   padding: 90px;
-  background-color: #264653;
+  background-color: $bay-dark;
 
   // Pagination (points sous le carousel)
   .swiper-pagination-bullet {
@@ -24,19 +24,13 @@
   // Style des cartes de cours
   .course-card {
     position: relative;
-    height: 350px;
+    overflow: hidden;
+    height: 450px;
     width: 100%;
     border-radius: 15px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-
+    
     // Effet d'ombre et d'animation au survol
     &:hover {
       transform: scale(1.05);
@@ -49,11 +43,16 @@
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 20px;
-      background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), transparent);
+      top: 0; // Recouvre toute l'image
+      background: rgba(0, 0, 0, 0.7); // Assombrit l'image en ajoutant un fond noir plus opaque
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
+      padding: 20px;
       color: $light; // Texte blanc
-
+    
       h3 {
         font-size: 1.8rem;
         font-weight: bold;
@@ -61,7 +60,7 @@
         text-transform: uppercase;
         color: $light; 
       }
-
+    
       p {
         margin: 5px 0;
         font-size: 1rem;

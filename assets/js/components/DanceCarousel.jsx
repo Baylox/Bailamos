@@ -45,6 +45,7 @@ const CourseCarousel = () => {
       pagination={{ clickable: true }}
       spaceBetween={40}
       slidesPerView={1}
+      initialSlide={2} // Slide initial au milieu
       breakpoints={{
         640: { slidesPerView: 1 },
         768: { slidesPerView: 2 },
@@ -60,9 +61,8 @@ const CourseCarousel = () => {
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
-              height: "300px", // Ajuste la hauteur ici
-              borderRadius: "10px", // Coins arrondis
-              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+              height: "400px", 
+              borderRadius: "10px", 
             }}
             data-dance={course.dance.name}
           >
