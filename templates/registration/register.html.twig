@@ -1,57 +1,68 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %} Inscription {% endblock %}
 
 {% block body %}
-    <div class="registration-container">
-        {% for flash_error in app.flashes('verify_email_error') %}
-            <div class="alert alert-danger registration-flash">{{ flash_error }}</div>
-        {% endfor %}
+<div class="container d-flex flex-column align-items-center justify-content-center vh-100 bg-white text-light">
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger w-100 text-center" role="alert" data-aos="fade-down" data-aos-duration="800">
+            {{ flash_error }}
+        </div>
+    {% endfor %}
 
-        <h1 class="registration-title">Créer un compte</h1>
+    <div class="card shadow-lg w-100" style="max-width: 500px;" data-aos="fade-up" data-aos-duration="1000">
+        <h1 class="mb-4 text-center" data-aos="zoom-in" data-aos-duration="1200">
+            Créer un compte
+        </h1>
+        <div class="card-body">
+            {{ form_start(registrationForm, {'attr': {'class': 'needs-validation', 'novalidate': ''}}) }}
 
-        <div class="registration-form-wrapper">
-            <div class="registration-form-container">
-                {{ form_start(registrationForm, {'attr': {'class': 'registration-form'}}) }}
-
-                <div class="registration-form-group">
-                    {{ form_label(registrationForm.email, 'Adresse email', {'label_attr': {'class': 'registration-label'}}) }}
-                    {{ form_widget(registrationForm.email, {'attr': {'class': 'registration-input'}}) }}
-                    {{ form_errors(registrationForm.email) }}
-                </div>
-
-                <div class="registration-form-group">
-                    {{ form_label(registrationForm.firstName, 'Prénom', {'label_attr': {'class': 'registration-label'}}) }}
-                    {{ form_widget(registrationForm.firstName, {'attr': {'class': 'registration-input'}}) }}
-                    {{ form_errors(registrationForm.firstName) }}
-                </div>
-
-                <div class="registration-form-group">
-                    {{ form_label(registrationForm.lastName, 'Nom de famille', {'label_attr': {'class': 'registration-label'}}) }}
-                    {{ form_widget(registrationForm.lastName, {'attr': {'class': 'registration-input'}}) }}
-                    {{ form_errors(registrationForm.lastName) }}
-                </div>
-
-                <div class="registration-form-group">
-                    {{ form_label(registrationForm.plainPassword, 'Mot de passe', {'label_attr': {'class': 'registration-label'}}) }}
-                    {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'registration-input'}}) }}
-                    {{ form_errors(registrationForm.plainPassword) }}
-                </div>
-
-                <div class="registration-form-group registration-terms">
-                    {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'registration-checkbox'}}) }}
-                    {{ form_label(registrationForm.agreeTerms, 'J\'accepte les termes et conditions', {'label_attr': {'class': 'registration-label-checkbox'}}) }}
-                    {{ form_errors(registrationForm.agreeTerms) }}
-                </div>
-
-                <button type="submit" class="registration-submit">S'inscrire</button>
-
-                <a href="/login" class="registration-login-link">Déjà inscrit ? Se connecter</a>
-
-                {{ form_end(registrationForm) }}
+            <div class="mb-3" data-aos="fade-right" data-aos-duration="800">
+                {{ form_label(registrationForm.email, 'Adresse email', {'label_attr': {'class': 'form-label fw-bold text-primary'}}) }}
+                {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                <div class="form-text text-danger">{{ form_errors(registrationForm.email) }}</div>
             </div>
+
+            <div class="mb-3" data-aos="fade-right" data-aos-duration="1000">
+                {{ form_label(registrationForm.firstName, 'Prénom', {'label_attr': {'class': 'form-label fw-bold text-primary'}}) }}
+                {{ form_widget(registrationForm.firstName, {'attr': {'class': 'form-control'}}) }}
+                <div class="form-text text-danger">{{ form_errors(registrationForm.firstName) }}</div>
+            </div>
+
+            <div class="mb-3" data-aos="fade-right" data-aos-duration="1200">
+                {{ form_label(registrationForm.lastName, 'Nom de famille', {'label_attr': {'class': 'form-label fw-bold text-primary'}}) }}
+                {{ form_widget(registrationForm.lastName, {'attr': {'class': 'form-control'}}) }}
+                <div class="form-text text-danger">{{ form_errors(registrationForm.lastName) }}</div>
+            </div>
+
+            <div class="mb-3" data-aos="fade-right" data-aos-duration="1400">
+                {{ form_label(registrationForm.plainPassword, 'Mot de passe', {'label_attr': {'class': 'form-label fw-bold text-primary'}}) }}
+                {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                <div class="form-text text-danger">{{ form_errors(registrationForm.plainPassword) }}</div>
+            </div>
+
+            <div class="form-check mb-3" data-aos="fade-right" data-aos-duration="1600">
+                {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+                {{ form_label(registrationForm.agreeTerms, 'J\'accepte les termes et conditions', {'label_attr': {'class': 'form-check-label'}}) }}
+                <div class="form-text text-danger">{{ form_errors(registrationForm.agreeTerms) }}</div>
+            </div>
+
+            <div class="d-grid mb-3" data-aos="fade-up" data-aos-duration="1800">
+                <button type="submit" class="btn btn-primary btn-lg">S'inscrire</button>
+            </div>
+
+            <div class="text-center" data-aos="fade-up" data-aos-duration="2000">
+                <a href="/login" class="text-decoration-none text-secondary">
+                    Déjà inscrit ? <span class="fw-bold text-primary">Se connecter</span>
+                </a>
+            </div>
+
+            {{ form_end(registrationForm) }}
         </div>
     </div>
+</div>
 {% endblock %}
+
+
 
 
