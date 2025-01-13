@@ -13,56 +13,52 @@
         {% endfor %}
     {% endfor %}
 
-<section class="club-presentation">
-    <div class="presentation-wrapper">
-        <h1 class="club-title" data-aos="fade-down" data-aos-duration="500">
-            Le Rythme, La Passion, La Communauté !
-        </h1>
+    <section class="club-presentation">
+        <div class="presentation-wrapper">
+            <h1 class="club-title" data-aos="fade-down" data-aos-duration="500">
+                Le Rythme, La Passion, La Communauté !
+            </h1>
 
-        <p class="club-intro" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
-            Chez BayAlamo, la danse est bien plus qu'un loisir : c'est une passion, une communauté, une expérience. 
-            Rejoignez-nous pour explorer la magie du langage musical, et laissez vos pas vous guider vers de nouveaux horizons.
-        </p>
-
-        <div class="club-highlights">
-            <div class="highlight" data-aos="fade-right" data-aos-duration="1500">
-                <i class="fas fa-users"></i>
-                <h2>Une communauté accueillante</h2>
-                <p> Rencontrez des passionnés de danse et partagez des moments riches en émotions.</p>
+            <p class="club-intro" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
+                Chez BayAlamo, la danse est bien plus qu'un loisir : c'est une passion, une communauté, une expérience. 
+                Rejoignez-nous pour explorer la magie du langage musical, et laissez vos pas vous guider vers de nouveaux horizons.
+            </p>
+            <div class="club-highlights">
+                <div class="highlight">
+                    <i class="fas fa-users"></i>
+                    <h2>Une communauté accueillante</h2>
+                    <p>Rencontrez des passionnés de danse et partagez des moments riches en émotions.</p>
+                </div>
+                <div class="highlight">
+                    <i class="fas fa-music"></i>
+                    <h2>Des cours rythmés</h2>
+                    <p>Apprenez avec des professeurs inspirants et développez votre style, quel que soit votre niveau.</p>
+                </div>
+                <div class="highlight">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h2>Des événements spectaculaires</h2>
+                    <p>Vivez des soirées magiques, des stages intensifs et des moments uniques sur le rythme de la musique.</p>
+                </div>
             </div>
-            <!-- Ajout d'un délai pour l'animation -->
-            <div class="highlight" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="100">
-                <i class="fas fa-music"></i>
-                <h2>Des cours rythmés</h2>
-                <p>Apprenez avec des professeurs inspirants et développez votre style, quel que soit votre niveau.</p>
-            </div>
-            <!-- Ajout d'un délai supplémentaire -->
-            <div class="highlight" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="200">
-                <i class="fas fa-calendar-alt"></i>
-                <h2>Des événements spectaculaires</h2>
-                <p>Vivez des soirées magiques, des stages intensifs et des moments uniques sur le rythme de la musique.</p>
+            <!-- Boutons CTA sans effet ressort -->
+            <div class="cta-buttons">
+                <a href="#" class="cta-btn">Découvrir nos cours</a>
+                <a href="#" class="cta-btn cta-secondary">Participer à un événement</a>
             </div>
         </div>
+    </section>
 
-        <!-- Boutons CTA avec effet ressort -->
-        <div class="cta-buttons" data-aos="zoom-in-up" data-aos-duration="1800" data-aos-delay="300">
-            <a href="#" class="cta-btn">Découvrir nos cours</a>
-            <a href="#" class="cta-btn cta-secondary">Participer à un événement</a>
+    <div id="react-root"></div>
+
+    <section class="club-cta">
+        <div class="cta-wrapper">
+            <h3 class="cta-title" data-aos="fade-up" data-aos-duration="800">Prêts à rejoindre l'aventure ?</h3>
+            <p class="cta-intro" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                Inscrivez-vous dès maintenant à nos cours ou événements pour vivre l'expérience !
+            </p>
+            <a href="/register" class="cta-btn" data-aos="zoom-in" data-aos-duration="1200">S'inscrire maintenant</a>
         </div>
-    </div>
-</section>
-
-<div id="react-root"></div>
-
-
-<section class="club-cta">
-    <div class="cta-wrapper">
-        <h3 class="cta-title" data-aos="fade-up" data-aos-duration="800">Prêts à rejoindre l'aventure ?</h3>
-        <p class="cta-intro" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-            Inscrivez-vous dès maintenant à nos cours ou événements pour vivre l'expérience !
-        </p>
-        <a href="/register" class="cta-btn" data-aos="zoom-in" data-aos-duration="1200">S'inscrire maintenant</a>
-    </div>
-</section>
+    </section>
+</div>
 
 {% endblock %}
