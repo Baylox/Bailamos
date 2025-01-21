@@ -21,7 +21,9 @@
             {% block body %}{% endblock %}
         </main>
 
-
+        {# FOOTER #}
+        {% include '_partials/_footer.html.twig' %}
+        
         {# Bloc pour inclure les fichiers JS générés par Webpack Encore #}
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
