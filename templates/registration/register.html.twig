@@ -10,8 +10,8 @@
         </div>
     {% endfor %}
 
-    <div class="card shadow-lg w-100" style="max-width: 500px;" data-aos="fade-up" data-aos-duration="1000">
-        <h1 class="mb-4 text-center" data-aos="zoom-in" data-aos-duration="1200">
+    <div class="card shadow-lg w-100 bg-dark" style="max-width: 500px;" data-aos="fade-up" data-aos-duration="1000">
+        <h1 class="mb-4 text-center text-light" data-aos="zoom-in" data-aos-duration="1200">
             Créer un compte
         </h1>
         <div class="card-body">
@@ -41,7 +41,7 @@
                 <div class="form-text text-danger">{{ form_errors(registrationForm.plainPassword) }}</div>
             </div>
 
-            <div class="form-check mb-3" data-aos="fade-right" data-aos-duration="1600">
+            <div class="form-check mb-3 text-light" data-aos="fade-right" data-aos-duration="1600">
                 {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
                 {{ form_label(registrationForm.agreeTerms, 'J\'accepte les termes et conditions', {'label_attr': {'class': 'form-check-label'}}) }}
                 <div class="form-text text-danger">{{ form_errors(registrationForm.agreeTerms) }}</div>
