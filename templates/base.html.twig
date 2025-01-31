@@ -9,7 +9,7 @@
         
         {# Bloc pour inclure les fichiers CSS générés par Webpack Encore #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('app') }}?v={{ 'now'|date('U') }}
         {% endblock %}
     </head>
     <body>
@@ -26,7 +26,7 @@
         
         {# Bloc pour inclure les fichiers JS générés par Webpack Encore #}
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('app') }}?v={{ 'now'|date('U') }}
         {% endblock %}
     </body>
 </html>
