@@ -14,7 +14,7 @@ class Event
     private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $lieu = null;
+    private ?string $room = null;
 
     #[ORM\Column(type: 'datetime')]
     private ?\DateTimeInterface $date = null;
@@ -24,14 +24,14 @@ class Event
         return $this->id;
     }
 
-    public function getLieu(): ?string
+    public function getRoom(): ?string
     {
-        return $this->lieu;
+        return $this->room;
     }
 
-    public function setLieu(string $lieu): self
+    public function setRoom(string $room): self
     {
-        $this->lieu = $lieu;
+        $this->room = $room;
         return $this;
     }
 
