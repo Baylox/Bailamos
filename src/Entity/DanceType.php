@@ -17,9 +17,9 @@ class DanceType
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 60)]
     #[Assert\NotBlank(message: 'Le nom ne peut pas être vide.')]
-    #[Assert\Length(max: 100, maxMessage: 'Le nom ne peut pas dépasser 100 caractères.')]
+    #[Assert\Length(max: 60, maxMessage: 'Le nom ne peut pas dépasser 60 caractères.')]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
