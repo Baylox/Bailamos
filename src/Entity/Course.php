@@ -16,7 +16,7 @@ class Course
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 150)]
+    #[ORM\Column(length: 50)]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
@@ -35,7 +35,7 @@ class Course
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'courses')]
     private Collection $students;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 10)]
     private ?string $day_of_week = null;
 
     public function __construct()
