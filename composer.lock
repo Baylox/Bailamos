@@ -2757,16 +2757,16 @@
         },
         {
             "name": "symfony/cache",
-            "version": "v6.4.18",
+            "version": "v6.4.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache.git",
-                "reference": "b209751ed25f735ea90ca4c9c969d9413a17dfee"
+                "reference": "5490a577195422c3c9cda09c64823580858af854"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache/zipball/b209751ed25f735ea90ca4c9c969d9413a17dfee",
-                "reference": "b209751ed25f735ea90ca4c9c969d9413a17dfee",
+                "url": "https://api.github.com/repos/symfony/cache/zipball/5490a577195422c3c9cda09c64823580858af854",
+                "reference": "5490a577195422c3c9cda09c64823580858af854",
                 "shasum": ""
             },
             "require": {
@@ -2833,7 +2833,7 @@
                 "psr6"
             ],
             "support": {
-                "source": "https://github.com/symfony/cache/tree/v6.4.18"
+                "source": "https://github.com/symfony/cache/tree/v6.4.41"
             },
             "funding": [
                 {
@@ -2845,24 +2845,28 @@
                     "type": "github"
                 },
                 {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-01-22T14:13:52+00:00"
+            "time": "2026-05-24T08:42:40+00:00"
         },
         {
             "name": "symfony/cache-contracts",
-            "version": "v3.5.1",
+            "version": "v3.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache-contracts.git",
-                "reference": "15a4f8e5cd3bce9aeafc882b1acab39ec8de2c1b"
+                "reference": "225e8a254166bd3442e370c6f50145465db63831"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache-contracts/zipball/15a4f8e5cd3bce9aeafc882b1acab39ec8de2c1b",
-                "reference": "15a4f8e5cd3bce9aeafc882b1acab39ec8de2c1b",
+                "url": "https://api.github.com/repos/symfony/cache-contracts/zipball/225e8a254166bd3442e370c6f50145465db63831",
+                "reference": "225e8a254166bd3442e370c6f50145465db63831",
                 "shasum": ""
             },
             "require": {
@@ -2876,7 +2880,7 @@
                     "name": "symfony/contracts"
                 },
                 "branch-alias": {
-                    "dev-main": "3.5-dev"
+                    "dev-main": "3.7-dev"
                 }
             },
             "autoload": {
@@ -2909,7 +2913,7 @@
                 "standards"
             ],
             "support": {
-                "source": "https://github.com/symfony/cache-contracts/tree/v3.5.1"
+                "source": "https://github.com/symfony/cache-contracts/tree/v3.7.0"
             },
             "funding": [
                 {
@@ -2921,11 +2925,15 @@
                     "type": "github"
                 },
                 {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-25T14:20:29+00:00"
+            "time": "2026-05-05T15:33:14+00:00"
         },
         {
             "name": "symfony/clock",
@@ -8043,16 +8051,16 @@
         },
         {
             "name": "symfony/var-exporter",
-            "version": "v6.4.26",
+            "version": "v6.4.37",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-exporter.git",
-                "reference": "466fcac5fa2e871f83d31173f80e9c2684743bfc"
+                "reference": "34f6957deffacabd1b1c579a312daa481e3e99ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/466fcac5fa2e871f83d31173f80e9c2684743bfc",
-                "reference": "466fcac5fa2e871f83d31173f80e9c2684743bfc",
+                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/34f6957deffacabd1b1c579a312daa481e3e99ca",
+                "reference": "34f6957deffacabd1b1c579a312daa481e3e99ca",
                 "shasum": ""
             },
             "require": {
@@ -8100,7 +8108,7 @@
                 "serialize"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-exporter/tree/v6.4.26"
+                "source": "https://github.com/symfony/var-exporter/tree/v6.4.37"
             },
             "funding": [
                 {
@@ -8120,7 +8128,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-09-11T09:57:09+00:00"
+            "time": "2026-04-14T12:12:40+00:00"
         },
         {
             "name": "symfony/web-link",
